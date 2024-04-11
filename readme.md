@@ -1,50 +1,23 @@
-# AI Junior Developer Test 
-Welcome! You’ve stepped into the arena – now show us what you’ve got! 
+![chatbot_hero_1](https://github.com/abdullahbh/openfabric-test/assets/75631205/d4b797af-4d1f-4cc5-93cb-457a52d1b2b5)
 
-## Mission
-You're not just fiddling with code here; you're architecting the future. Your battleground? An AI app framework crying out for a brain.
+# AI Chatbot for Answering Science Questions
 
-Your task: Forge an 💬NLP chatbot that doesn’t just answer, but masters science-related questions.
+This project aims to implement an NLP chatbot using the GPT-Neo language model for answering science-related questions. The implementation is done in Python programming language, and the code is provided in the form of a Python script.
 
-Immerse yourself in the main.py file. Your battlefield is the execute function. Time to unleash your genius:
-```python
-############################################################
-# Callback function called on each execution pass
-############################################################
-def execute(request: SimpleText, ray: Ray, state: State) -> SimpleText:
-    output = []
-    for text in request.text:
-        # TODO Add code here
-        response = 'Hello!' <<-- Here you add the magic 
-        output.append(response)
+## Requirements
 
-    return SchemaUtil.create(SimpleText(), dict(text=output))
-```
-## Ground Rules
-Step up with any arsenal (read: libraries or packages) you believe in, but remember:
-* 👎 External services like chatGPT are off-limits. Stand on your own.
-* 👎 Plagiarism is for the weak. Forge your own path.
-* 👎 A broken app equals failure. Non-negotiable.
+The implementation requires the following libraries to be installed:
 
-## Deployment Options
-The application can be executed in two different ways:
-* locally by running the `start.sh` 
-* on in a docker container using `Dockerfile` 
+- `transformers`: a library for Natural Language Processing tasks, including pre-trained models and fine-tuning tools.
+- `openfabric_pysdk`: a library for developing OpenAI Fabric-based applications.
+- `time`: a built-in library for time-related functions.
 
-## Proving Your Mettle
-* Submit your masterpiece on GitHub. We want the link within **1 week, not a second more**.
-* Go the extra mile and include a video where you walk us through your solution, showcasing 
-it in live action. 
-* We want to see not just what you've created but also how you envisioned and executed it
+The implementation also assumes that the GPT-Neo-125M model has been downloaded and available for use. The tokenizer and the model are instantiated using the `AutoTokenizer` and `AutoModelForCausalLM` classes provided by the `transformers` library.
 
+## Usage
 
-## This Is It
-We're not just evaluating a project; we're judging your potential to revolutionize our 
-landscape. A half-baked app won’t cut it.
+The chatbot is designed to respond to science-related questions. It uses the `execute` function as a callback function that takes in a `SimpleText` object as input and returns another `SimpleText` object containing the bot's response(s).
 
-We're zeroing in on:
-* 👍 Exceptional documentation.
-* 👍 Code that speaks volumes.
-* 👍 Inventiveness that dazzles.
-* 👍 A problem-solving beast.
-* 👍 Unwavering adherence to the brief
+When called, the `execute` function processes the input text by tokenizing it using the `tokenizer` object, then generates a response using the `model` object. The response is decoded back to text format and appended to the `output` list.
+
+The `max_length`, `num_return_sequences`, `no_repeat_ngram_size`, and `early_stopping` arguments in the `model.generate()` method determine the length and quality of the generated response.
